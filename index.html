@@ -33,14 +33,17 @@
             const display = document.querySelector('#counter');
             let counterValue = 200; // Set the starting value
 
+            display.textContent = counterValue;
+
             const decreaseCounter = () => {
-                counterValue -= 1;
-                display.textContent = counterValue;
+                if (counterValue > 0) {
+                    counterValue -= 1;
+                    display.textContent = counterValue;
+                }
             };
 
-            // Decrease the counter every 2-3 minutes (randomly)
-            const randomTime = Math.random() * (3 - 2) + 2; // Random time between 2 and 3 minutes
-            setTimeout(decreaseCounter, randomTime * 60 * 1000);
+            // Decrease the counter every 30 seconds
+            setInterval(decreaseCounter, 30000); // 30,000 milliseconds = 30 seconds
         }
 
         window.onload = function () {
