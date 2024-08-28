@@ -15,14 +15,23 @@
             align-items: flex-start;
         }
         #counter {
-            font-size: 8vw; /* Responsif berdasarkan lebar viewport */
+            font-size: 72px; /* Ukuran normal untuk desktop */
             background-color: transparent;
             color: #18488D;
-            padding: 10px 15px; /* Padding responsif */
+            padding: 20px;
             border-radius: 10px;
-            border: 0.5vw solid #18488D; /* Border responsif */
+            border: 5px solid #18488D;
             text-align: center;
-            margin: 5vw; /* Margin responsif */
+            margin: 20px;
+        }
+
+        @media (max-width: 768px) {
+            #counter {
+                font-size: 48px; /* Ukuran lebih kecil untuk perangkat mobile */
+                padding: 15px;
+                border: 4px solid #18488D;
+                margin: 15px;
+            }
         }
     </style>
 </head>
