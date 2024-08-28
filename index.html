@@ -29,33 +29,22 @@
 <body>
     <div id="counter">200</div>
     <script>
-        function updateCounter() {
-            let counterValue = localStorage.getItem('counter');
-
-            if (!counterValue) {
-                counterValue = 200; // Set the starting value
-            } else {
-                counterValue = parseInt(counterValue, 10) - 1; // Decrease the counter by 1
-            }
-
-            localStorage.setItem('counter', counterValue);
-            return counterValue;
-        }
-
         function startCounter() {
             const display = document.querySelector('#counter');
-            const newCounterValue = updateCounter();
-            display.textContent = newCounterValue;
+            let counterValue = 200; // Set the starting value
+
+            const decreaseCounter = () => {
+                counterValue -= 1;
+                display.textContent = counterValue;
+            };
+
+            // Decrease the counter every 2-3 minutes (randomly)
+            const randomTime = Math.random() * (3 - 2) + 2; // Random time between 2 and 3 minutes
+            setTimeout(decreaseCounter, randomTime * 60 * 1000);
         }
 
         window.onload = function () {
             startCounter();
-
-            // Refresh the counter every 2-3 minutes (randomly)
-            const randomTime = Math.random() * (3 - 2) + 2; // Random time between 2 and 3 minutes
-            setTimeout(function() {
-                location.reload();
-            }, randomTime * 60 * 1000);
         };
     </script>
 </body>
