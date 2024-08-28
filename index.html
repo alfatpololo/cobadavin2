@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Counter</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        #counter {
+            font-size: 72px;
+            background-color: transparent;
+            color: #18488D;
+            padding: 20px;
+            border-radius: 10px;
+            border: 5px solid #18488D;
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="counter">200</div>
+    <script>
+        function updateCounter() {
+            let counterValue = localStorage.getItem('counter');
+
+            if (!counterValue) {
+                counterValue = 200; // Set the starting value
+            } else {
+                counterValue = parseInt(counterValue, 10) - 1; // Decrease the counter by 1
+            }
+
+            localStorage.setItem('counter', counterValue);
+            return counterValue;
+        }
+
+        function startCounter() {
+            const display = document.querySelector('#counter');
+            const newCounterValue = updateCounter();
+            display.textContent = newCounterValue;
+        }
+
+        window.onload = function () {
+            startCounter();
+
+            // Refresh the counter every 2-3 minutes (randomly)
+            const randomTime = Math.random() * (3 - 2) + 2; // Random time between 2 and 3 minutes
+            setTimeout(function() {
+                location.reload();
+            }, randomTime * 60 * 1000);
+        };
+    </script>
+</body>
+</html>
